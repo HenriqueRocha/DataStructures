@@ -91,10 +91,6 @@ public class IntLinkedList {
         size++;
     }
 
-    public boolean isEmpty() {
-        return head == null;
-    }
-
     /**
      * Removes the element at the specified position in this list.
      * Shifts any subsequent elements to the left (subtracts one from their indices).
@@ -119,6 +115,10 @@ public class IntLinkedList {
             n.next = n.next.next;
         }
         size--;
+    }
+
+    public boolean isEmpty() {
+        return head == null;
     }
 
     public int get(int index) {
