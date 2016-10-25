@@ -1,7 +1,7 @@
 package net.henriquerocha.datastructures;
 
 public class IntLinkedList {
-    private Node head;
+    Node head;
     private int size;
 
     /**
@@ -77,10 +77,15 @@ public class IntLinkedList {
      *
      * @param index index at which the specified element is to be inserted
      * @param e     element to be inserted
+     * @throws IndexOutOfBoundsException if the index is out of range (index < 0 || index > size())
      */
     public void add(int index, int e) {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException();
+        }
+
         if (index == 0) {
-            head = new Node(e, head);
+            addFirst(e);
         } else {
             Node n = head;
             for (int i = 0; i < index - 1; i++) {
@@ -103,7 +108,7 @@ public class IntLinkedList {
      * @throws IndexOutOfBoundsException if the index is out of range (index < 0 || index >= size())
      */
     public void remove(int index) {
-        checkBounds(index);
+        checkValidElementIndex(index);
 
         if (index == 0) {
             head = head.next;
@@ -117,22 +122,36 @@ public class IntLinkedList {
         size--;
     }
 
+    private void checkValidElementIndex(int index) {
+        if (index < 0 || index >= size()) {
+            throw new IndexOutOfBoundsException();
+        }
+    }
+
+    /**
+     * Is this linked list empty?
+     *
+     * @return true if this linked list contains no elements, false otherwise
+     */
     public boolean isEmpty() {
         return head == null;
     }
 
+    /**
+     * Returns the element at the specified position in this list.
+     *
+     * @param index index of the element to return
+     * @return the element at the specified position in this list
+     * @throws IndexOutOfBoundsException if the index is out of range (index < 0 || index >= size())
+     */
     public int get(int index) {
-        checkBounds(index);
+        checkValidElementIndex(index);
 
         Node n = head;
         for (int i = 0; i < index; i++) {
             n = n.next;
         }
         return n.element;
-    }
-
-    private void checkBounds(int index) {
-        if (head == null || index > size - 1) throw new IndexOutOfBoundsException();
     }
 
     /**
@@ -147,11 +166,28 @@ public class IntLinkedList {
         return size;
     }
 
+    /**
+     * Removes all of the elements from this list.
+     * The list will be empty after this call returns.
+     */
     public void clear() {
         head = null;
     }
 
-    private class Node {
+    /**
+     * Reverse this linked list.
+     */
+    public void reverse() {
+        Node reversed = null;
+        Node n = head;
+        while (n != null) {
+            reversed = new Node(n.element, reversed);
+            n = n.next;
+        }
+        head = reversed;
+    }
+
+    class Node {
         int element;
         Node next;
 

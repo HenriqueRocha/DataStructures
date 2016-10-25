@@ -55,8 +55,9 @@ public class IntLinkedListTest {
         list.add(3);
 
         list.add(2, 5);
+        list.add(0, 0);
 
-        assertEquals("1->2->5->3->NULL", list.toString());
+        assertEquals("0->1->2->5->3->NULL", list.toString());
     }
 
     @Test
@@ -123,6 +124,23 @@ public class IntLinkedListTest {
         assertEquals("1->3->NULL", list.toString());
     }
 
+    @Test
+    public void shouldReverseEmptyList() {
+        IntLinkedList list = new IntLinkedList();
+        list.reverse();
+        assertEquals("NULL", list.toString());
+    }
+
+    @Test
+    public void shouldReverseNonEmptyList() {
+        IntLinkedList list = new IntLinkedList();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.reverse();
+        assertEquals("3->2->1->NULL", list.toString());
+    }
+
     @Test(expected = IndexOutOfBoundsException.class)
     public void getOnEmptyListShouldThrowOutOfBounds() {
         IntLinkedList list = new IntLinkedList();
@@ -145,5 +163,11 @@ public class IntLinkedListTest {
         list.add(2);
         list.add(3);
         list.remove(10);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void addOutOfBoundsThrowsOutOfBounds() {
+        IntLinkedList list = new IntLinkedList();
+        list.add(1, 10);
     }
 }
