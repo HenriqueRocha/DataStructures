@@ -1,8 +1,14 @@
 package net.henriquerocha.datastructures;
 
-public class IntBinTree {
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-    private TreeNode root;
+public class IntBinTree implements IntCollection {
+
+    TreeNode root;
+
+    public IntBinTree() {
+        root = null;
+    }
 
     public IntBinTree(int i) {
         root = new TreeNode(i);
@@ -28,7 +34,21 @@ public class IntBinTree {
         preOrderTraversal(root.right, list);
     }
 
-    private class TreeNode {
+    @Override
+    public boolean isEmpty() {
+        return root == null;
+    }
+
+    @Override
+    public void add(int element) {
+        throw new NotImplementedException();
+    }
+
+    public boolean contains(int i) {
+        throw new NotImplementedException();
+    }
+
+    class TreeNode {
         int data;
         TreeNode left;
         TreeNode right;

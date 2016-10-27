@@ -1,14 +1,10 @@
 package net.henriquerocha.datastructures;
 
-public class IntLinkedList {
+public class IntLinkedList implements IntCollection {
     Node head;
     private int size;
 
-    /**
-     * Is this linked list empty?
-     *
-     * @return true if this linked list contains no elements, false otherwise
-     */
+    @Override
     public boolean isEmpty() {
         return head == null;
     }
@@ -66,6 +62,7 @@ public class IntLinkedList {
      *
      * @param e element to be appended to this list
      */
+    @Override
     public void add(int e) {
         if (head == null) {
             head = new Node(e, null);
@@ -201,17 +198,18 @@ public class IntLinkedList {
     /**
      * Remove duplicates.
      * <p>
-     * O(n^2) time complexity.
+     * O(n log n) time complexity (average case)
+     * O(n^2) time complexity (worst case)
      */
     public void removeDuplicates() {
-        IntLinkedList found = new IntLinkedList();
+        IntBST found = new IntBST();
         Node n = head;
         Node lastNonDup = n;
         while (n != null) {
             if (found.contains(n.element)) {
                 lastNonDup.next = n.next;
             } else {
-                found.addFirst(n.element);
+                found.add(n.element);
                 lastNonDup = n;
             }
             n = n.next;
@@ -219,6 +217,7 @@ public class IntLinkedList {
         lastNonDup.next = null;
     }
 
+    @Override
     public boolean contains(int i) {
         Node n = head;
         while (n != null) {
