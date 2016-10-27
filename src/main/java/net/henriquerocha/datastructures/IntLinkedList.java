@@ -5,6 +5,35 @@ public class IntLinkedList {
     private int size;
 
     /**
+     * Is this linked list empty?
+     *
+     * @return true if this linked list contains no elements, false otherwise
+     */
+    public boolean isEmpty() {
+        return head == null;
+    }
+
+    /**
+     * The number of elements in this list.
+     * <p>
+     * The size is computed in O(1) time. New size is updated on every add or remove operation.
+     * </p>
+     *
+     * @return the number of elements in this list.
+     */
+    public int size() {
+        return size;
+    }
+
+    /**
+     * Removes all of the elements from this list.
+     * The list will be empty after this call returns.
+     */
+    public void clear() {
+        head = null;
+    }
+
+    /**
      * The String representation of this linked list.
      * <p>
      * Inspired by HackerRank challenge:
@@ -97,6 +126,17 @@ public class IntLinkedList {
     }
 
     /**
+     * Convenience method to add multiple elements.
+     *
+     * @param ints elements to add
+     */
+    public void add(int... ints) {
+        for (int i : ints) {
+            add(i);
+        }
+    }
+
+    /**
      * Removes the element at the specified position in this list.
      * Shifts any subsequent elements to the left (subtracts one from their indices).
      * <p>
@@ -129,15 +169,6 @@ public class IntLinkedList {
     }
 
     /**
-     * Is this linked list empty?
-     *
-     * @return true if this linked list contains no elements, false otherwise
-     */
-    public boolean isEmpty() {
-        return head == null;
-    }
-
-    /**
      * Returns the element at the specified position in this list.
      *
      * @param index index of the element to return
@@ -155,26 +186,6 @@ public class IntLinkedList {
     }
 
     /**
-     * The number of elements in this list.
-     * <p>
-     * The size is computed in O(1) time. New size is updated on every add or remove operation.
-     * </p>
-     *
-     * @return the number of elements in this list.
-     */
-    public int size() {
-        return size;
-    }
-
-    /**
-     * Removes all of the elements from this list.
-     * The list will be empty after this call returns.
-     */
-    public void clear() {
-        head = null;
-    }
-
-    /**
      * Reverse this linked list.
      */
     public void reverse() {
@@ -189,7 +200,7 @@ public class IntLinkedList {
 
     /**
      * Remove duplicates.
-     *
+     * <p>
      * O(n^2) time complexity.
      */
     public void removeDuplicates() {
