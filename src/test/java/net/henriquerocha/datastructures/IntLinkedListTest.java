@@ -141,6 +141,41 @@ public class IntLinkedListTest {
         assertEquals("3->2->1->NULL", list.toString());
     }
 
+    @Test
+    public void shouldRemoveDuplicates() {
+        IntLinkedList list = new IntLinkedList();
+        list.add(1);
+        list.add(2);
+        list.add(1);
+        list.add(1);
+        list.add(3);
+        list.add(3);
+        list.add(5);
+        list.add(2);
+
+        list.removeDuplicates();
+
+        assertEquals("1->2->3->5->NULL", list.toString());
+    }
+
+    @Test
+    public void containsReturnsFalseIfEmpty() {
+        IntLinkedList list = new IntLinkedList();
+
+        assertFalse(list.contains(1));
+    }
+
+    @Test
+    public void containsReturnsTrueIfNumberIsThere() {
+        IntLinkedList list = new IntLinkedList();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+
+        assertTrue(list.contains(3));
+    }
+
     @Test(expected = IndexOutOfBoundsException.class)
     public void getOnEmptyListShouldThrowOutOfBounds() {
         IntLinkedList list = new IntLinkedList();

@@ -187,6 +187,38 @@ public class IntLinkedList {
         head = reversed;
     }
 
+    /**
+     * Remove duplicates.
+     *
+     * O(n^2) time complexity.
+     */
+    public void removeDuplicates() {
+        IntLinkedList found = new IntLinkedList();
+        Node n = head;
+        Node lastNonDup = n;
+        while (n != null) {
+            if (found.contains(n.element)) {
+                lastNonDup.next = n.next;
+            } else {
+                found.addFirst(n.element);
+                lastNonDup = n;
+            }
+            n = n.next;
+        }
+        lastNonDup.next = null;
+    }
+
+    public boolean contains(int i) {
+        Node n = head;
+        while (n != null) {
+            if (n.element == i) {
+                return true;
+            }
+            n = n.next;
+        }
+        return false;
+    }
+
     class Node {
         int element;
         Node next;
