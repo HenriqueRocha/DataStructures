@@ -1,6 +1,8 @@
 package net.henriquerocha.datastructures;
 
-public class IntLinkedList implements IntCollection {
+import java.util.EmptyStackException;
+
+public class IntLinkedList implements IntCollection, IntStack {
     Node head;
     private int size;
 
@@ -227,6 +229,29 @@ public class IntLinkedList implements IntCollection {
             n = n.next;
         }
         return false;
+    }
+
+    @Override
+    public void push(int i) {
+        addFirst(i);
+    }
+
+    @Override
+    public int peek() {
+        assertNotEmpty();
+        return get(0);
+    }
+
+    private void assertNotEmpty() {
+        if (size == 0) throw new EmptyStackException();
+    }
+
+    @Override
+    public int pop() {
+        assertNotEmpty();
+        int result = peek();
+        remove(0);
+        return result;
     }
 
     class Node {
