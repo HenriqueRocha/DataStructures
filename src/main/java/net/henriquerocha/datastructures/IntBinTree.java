@@ -1,7 +1,5 @@
 package net.henriquerocha.datastructures;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 public class IntBinTree implements IntCollection {
 
     TreeNode root;
@@ -41,11 +39,11 @@ public class IntBinTree implements IntCollection {
 
     @Override
     public void add(int element) {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     public boolean contains(int i) {
-        throw new NotImplementedException();
+        throw new UnsupportedOperationException();
     }
 
     class TreeNode {
